@@ -34,7 +34,12 @@ app.v.init = function(){
 
 app.v.layout = function(){
   $('body').html(app.t.grid());
-  app.v.activateGridster();
+  app.v.activateGridStack();
+};
+
+app.v.activateGridStack = function () {
+  $('.grid-stack').gridstack({
+  })
 };
 
 app.v.activateGridster = function () {
@@ -53,12 +58,33 @@ app.v.activateGridster = function () {
 ////////////////////////////////////////////////
 
 app.t.grid = function () {
-  var d = '';
-  d += app.t.grid.cells(4, 8);
+  var d = '<div class="container"><div class="row">';
+  d += app.t.grid.cells(12, 2);
+  d += '</div></div>';
   return d;
 };
 
 app.t.grid.cells = function (across, deep) {
+  var d = '';
+  d += '<div class="grid-stack" >'
+  for (var i = 0; i < across; i++) {
+    for (var j = 0; j < deep; j++) {
+      d += '<div class="grid-stack-item" ';
+        d += 'data-gs-x="' + String(i) + '" ';
+        d += 'data-gs-y="' + String(j) + '" ';
+        d += 'data-gs-width="1" data-gs-height="1" >';
+        d += '<div class="grid-stack-item-content">' + i + ' ' + j + '</div>';
+      d += '</div>'; 
+    }
+  }
+  d += '</div>';
+  return d;
+};
+
+app.t.x_grid = function () {v
+};
+
+app.t.grid.x_cells = function (across, deep) {
   var d = '';
   d += '<div class="gridster" ><ul>'
   for (var i = 0; i < across; i++) {
@@ -99,11 +125,8 @@ app.v.css_config=function(){
     'body':{
       'background':'#333'
     },
-    'div.gridster li':{
+    'div.grid-stack-item-content':{
       'background':'#fff'
-    },
-    'div.gridster ul':{
-      'list-style':'none'
     }
 
   };
