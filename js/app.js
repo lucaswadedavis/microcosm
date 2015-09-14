@@ -39,6 +39,10 @@ app.v.layout = function(){
 
 app.v.activateGridStack = function () {
   $('.grid-stack').gridstack({
+    animate: true, 
+    resizable: {
+        handles: 'e, se, s, sw, w'
+    }
   })
 };
 
@@ -81,20 +85,6 @@ app.t.grid.cells = function (across, deep) {
   return d;
 };
 
-app.t.x_grid = function () {v
-};
-
-app.t.grid.x_cells = function (across, deep) {
-  var d = '';
-  d += '<div class="gridster" ><ul>'
-  for (var i = 0; i < across; i++) {
-    for (var j = 0; j < deep; j++) {
-      d += '<li data-row="' + String(i+1) + '" data-col="' + String(j+1) + '" data-sizex="1" data-sizey="1"></li>'; 
-    }
-  }
-  d += '</ul></div>';
-  return d;
-};
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
